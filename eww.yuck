@@ -1,0 +1,39 @@
+; ----------------------------- WINDOW ----------------------------- 
+(defwindow topbar
+  :monitor "DP-1"
+  :geometry (geometry :x "0%"
+              :y "5px"
+              :width "98%"
+              :height "40px"
+              :anchor "top center")
+  :stacking "fg"
+  :exclusive true
+  (box :orientation "horizontal"
+    (left)
+    (center)
+    (right)
+  )
+)
+
+; -----------------------------  WIDGETS ----------------------------- 
+(defwidget left []
+  (box :orientation "horizontal" :halign "center" :class "module"
+    ram))
+
+(defwidget center []
+  (box :orientation "horizontal" :halign "center" :class "module" 
+    time)) ; THESE TIME
+
+(defwidget right []
+  (box :orientation "horizontal" :halign "center" :class "module" 
+    (systray :orentation "h" :spacing 10 :prepend-new true)))
+
+; -----------------------------  VARIABLES ----------------------------- 
+(defvar separator "🡘")
+
+
+(defpoll ram :interval "1s" :initial "initial-value"
+  `./scripts/rust/ram_checker/target/release/ram_checker`)
+
+(defpoll time :interval "1s" :intial "initial-value"
+  "date")
