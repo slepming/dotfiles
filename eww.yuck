@@ -1,6 +1,6 @@
 ; ----------------------------- WINDOW ----------------------------- 
 (defwindow topbar
-  :monitor "DP-1"
+  :monitor '["DP-1", "DVI-D-1"]'
   :geometry (geometry :x "0%"
               :y "5px"
               :width "98%"
@@ -17,8 +17,45 @@
 
 ; -----------------------------  WIDGETS ----------------------------- 
 (defwidget left []
-  (box :orientation "horizontal" :halign "center" :class "module"
-    ram))
+  (box :orientation "horizontal" :halign "center" :class "module" :spacing 20
+    (workspaces)))
+
+(defwidget circular-metric [label value]
+  (box :orientation "h"
+    :class "circular-metric"
+    :space-evenly false
+    :spacing 10
+    :halign "center"
+    :valign "center"
+    (box :orientation "h" :class "label" label)
+    (circular-progress :value value)))
+
+(defwidget metric [label value]
+  (box
+    :orientation "h"
+    :space-evenly false
+    :spacing 10 
+    :halign "center"
+    :valign "center"
+    :class "metric"
+    (box :orientation "h" :class "label" label)
+    (progress :value value :orientation "h" :valign "center")))
+
+(defwidget workspaces []
+  (box :class "workspaces"
+    :orientation "h"
+    :halign "start"
+    :valign "center"
+    :spacing 10
+    (button :onclick "hyprctl dispatch workspace 1" 1)
+    (button :onclick "hyprctl dispatch workspace 2" 2)
+    (button :onclick "hyprctl dispatch workspace 3" 3)
+    (button :onclick "hyprctl dispatch workspace 4" 4)
+    (button :onclick "hyprctl dispatch workspace 5" 5)
+    (button :onclick "hyprctl dispatch workspace 6" 6)
+    (button :onclick "hyprctl dispatch workspace 7" 7)
+    (button :onclick "hyprctl dispatch workspace 8" 8)
+    (button :onclick "hyprctl dispatch workspace 9" 9)))
 
 (defwidget center []
   (box :orientation "horizontal" :halign "center" :class "module" 
@@ -30,10 +67,6 @@
 
 ; -----------------------------  VARIABLES ----------------------------- 
 (defvar separator "🡘")
-
-
-(defpoll ram :interval "1s" :initial "initial-value"
-  `./scripts/rust/ram_checker/target/release/ram_checker`)
 
 (defpoll time :interval "1s" :intial "initial-value"
   "date")
