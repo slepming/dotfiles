@@ -59,7 +59,8 @@
 
 (defwidget center []
   (box :orientation "horizontal" :halign "center" :class "module" 
-    time)) ; THESE TIME
+    (button :onclick "~/.local/share/eww/eww update -c ${EWW_CONFIG_DIR} cava-visible=${!cava-visible}" 
+      {music == "Playing" && cava-visible ? cava : time}))) ; THESE TIME
 
 (defwidget right []
   (box :orientation "horizontal" :halign "center" :class "module" 
@@ -68,5 +69,12 @@
 ; -----------------------------  VARIABLES ----------------------------- 
 (defvar separator "🡘")
 
-(defpoll time :interval "1s" :intial "initial-value"
+(defpoll time :interval "1s" :initial "initial-value"
   "date")
+
+(deflisten cava :initial "whatever" `playerctl --follow metadata --format {{title}}`)
+
+(defpoll music :interval "1s" :initial "initial-value"
+  "playerctl status")
+
+(defvar cava-visible true)
