@@ -1,0 +1,100 @@
+configuration {
+  modes: "drun";
+  show-icons: true;
+  drun-display-format:         "{name}";
+  font:   "FiraCodeNerdFont 20";
+}
+
+@theme "~/.config/rofi/theme.rasi"
+
+timeout {
+  action: "kb-cancel";
+  delay:  0;
+}
+
+filebrowser {
+  directories-first: true;
+  sorting-method:    "name";
+}
+
+window {
+  enabled:true;
+  fullscreen: false;
+  transparency: "real";
+  cursor: "default";
+  spacing:0em;
+  padding:0em;
+  border: 2px;
+  border-radius: 0em;
+  border-color: #ADC6FF;
+  background-color: #00000030;
+}
+
+mainbox {
+  enabled:true;
+  background-color: transparent;
+}
+frame {
+  background-color: transparent;
+}
+
+
+// Lists //
+listview {
+  enabled:true;
+  spacing:0.1em;
+  padding:1em;
+  dynamic:false;
+  fixed-height: false;
+  fixed-columns: false;
+  reverse:true;
+  cursor: "default";
+  background-color: transparent;
+  text-color: @main-fg;
+}
+
+inputbar{
+  enabled: true;
+  children: [entry];
+  background-color: transparent;
+}
+
+entry {
+  background-color: transparent;
+  text-color: white;
+  placeholder: "App";
+  placeholder-color: @main-fg;
+  horizontal-align: 0.5;
+}
+
+
+// Elements //
+element {
+  enabled:true;
+  spacing:0em;
+  padding:0em;
+  cursor: pointer;
+  background-color: transparent;
+  text-color: @main-fg;
+}
+
+element selected.normal {
+  background-color: @select-bg;
+  text-color: @select-fg;
+}
+
+element-icon {
+  cursor: inherit;
+  size:   1em;
+  background-color: transparent;
+  text-color: inherit;
+  expand: false;
+}
+
+element-text {
+  vertical-align: 0.5;
+  horizontal-align: 0.5;
+  cursor: inherit;
+  background-color: transparent;
+  text-color: white;
+}
