@@ -1,0 +1,58 @@
+@import "../colors.scss";
+
+$min-height-progress: 20px;
+$min-width-trough: 200px;
+
+.profile-module {
+  background-color: $module-color;
+  padding: 15px;
+  color: $module-text-color;
+  font-family: $text-font-family;
+  border-radius: 30px;
+  min-height: 50px;
+  min-width: 50px;
+}
+
+.music-title,
+.music-author {
+  font-size: 13px;
+}
+
+.profile-module trough {
+  min-height: $min-height-progress;
+  min-width: $min-width-trough;
+  background-color: $module-border-color;
+  border-radius: 30px;
+}
+
+.profile-module progress {
+  min-height: $min-height-progress;
+  background-color: darkorange;
+  border-radius: 30px;
+}
+
+.systray,
+.music {
+  min-width: 250px;
+}
+
+.systray label {
+  font-size: 30;
+}
+
+.music {
+  min-height: 350px;
+}
+
+.avatar {
+  border-radius: 100%;
+  border: 2px solid $avatar-border-color;
+}
+
+.cpu progress {
+  background-color: darkorange;
+}
+
+.ram progress {
+  background-color: greenyellow;
+}

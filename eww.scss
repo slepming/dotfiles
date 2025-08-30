@@ -1,13 +1,5 @@
-// ---------------------------------- MODULE ----------------------------------
-$module-color: rgba(58, 58, 58, 0.6);
-$module-text-color: rgba(255, 255, 255, 0.8);
-
-// ---------------------------------- PROGRESS-SLIDER ----------------------------------
-$progress-height: 15px;
-
-* {
-  all: unset;
-}
+@import "colors.scss";
+@import "profile/profile.scss";
 
 .topbar {
   background-color: transparent;
@@ -26,7 +18,7 @@ $progress-height: 15px;
 }
 
 .module label {
-  font-family: "FiraCodeNerdFont";
+  font-family: $text-font-family;
   font-weight: bold;
 }
 

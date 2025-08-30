@@ -1,3 +1,6 @@
+; ----------------------------- INCLUDES ----------------------------- 
+(include "./profile/profile.yuck")
+
 ; ----------------------------- WINDOW ----------------------------- 
 (defwindow topbar
   :monitor '["DP-1", "DVI-D-1"]'
@@ -20,27 +23,6 @@
   (box :orientation "horizontal" :halign "center" :class "module" :spacing 20
     (workspaces)))
 
-(defwidget circular-metric [label value]
-  (box :orientation "h"
-    :class "circular-metric"
-    :space-evenly false
-    :spacing 10
-    :halign "center"
-    :valign "center"
-    (box :orientation "h" :class "label" label)
-    (circular-progress :value value)))
-
-(defwidget metric [label value]
-  (box
-    :orientation "h"
-    :space-evenly false
-    :spacing 10 
-    :halign "center"
-    :valign "center"
-    :class "metric"
-    (box :orientation "h" :class "label" label)
-    (progress :value value :orientation "h" :valign "center")))
-
 (defwidget workspaces []
   (box :class "workspaces"
     :orientation "h"
@@ -59,8 +41,8 @@
 
 (defwidget center []
   (box :orientation "horizontal" :halign "center" :class "module" 
-    (button :onclick "~/.local/share/eww/eww update -c ${EWW_CONFIG_DIR} cava-visible=${!cava-visible}" 
-      {music == "Playing" && cava-visible ? cava : time}))) ; THESE TIME
+    (button :onclick "${EWW_CMD} update -c ${EWW_CONFIG_DIR} cava-visible=${!cava-visible}" 
+      {music-status == "Playing" && cava-visible ? cava : time})))
 
 (defwidget right []
   (box :orientation "horizontal" :halign "center" :class "module" 
@@ -72,9 +54,9 @@
 (defpoll time :interval "1s" :initial "initial-value"
   "date")
 
-(deflisten cava :initial "whatever" `playerctl --follow metadata --format {{title}}`)
+(deflisten cava :initial "whatever" `playerctl --follow metadata --format '{{artist}} -> "{{title}}"'`)
 
-(defpoll music :interval "1s" :initial "initial-value"
+(defpoll music-status :interval "1s" :initial "initial-value"
   "playerctl status")
 
 (defvar cava-visible true)
