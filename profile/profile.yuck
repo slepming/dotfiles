@@ -15,7 +15,7 @@
 ; ----------------------------- WIDGETS ----------------------------- 
 
 (defwidget profile-modules []
-  (box :space-evenly false :halign "center" :spacing 10
+  (box :space-evenly false :halign "center" :spacing 10 :valign "center"
     (box :class "profile-modules" :orientation "v" :space-evenly false :spacing 10 :halign "center" :valign "center"
         (profile-image :name "slepming" :url "${EWW_CONFIG_DIR}/assets/profile-image")
         (profile-module
@@ -23,9 +23,9 @@
           (metric :label "RAM" :value "${EWW_RAM["used_mem_perc"]}" :class "ram")
           "GPU TEMP ${EWW_TEMPS["AMDGPU_EDGE"]}")
     )
-    (box :class "profile-modules" :orientation "v" :space-evenly false :spacing 10 :halign "center" :valign "center"
-      (system-tray :valign "center" :halign "center")
+    (box :class "profile-modules" :orientation "v" :space-evenly false :spacing 10 :halign "center" :valign "top"
       (music-widget)
+      (system-tray :valign "center" :halign "center")
     )
 ))
 
@@ -55,12 +55,36 @@
 
 (defwidget music-widget [] 
   (profile-module
-    (label :class "music" :limit-width 25 :text music :yalign 0)
+    (box :orientation "v" :space-evenly false :spacing 10 :class "music-labels"
+      (label :class "music" :limit-width 25 :text music :yalign 0 :xalign 0.5)
+      (label :class "music author" :limit-width 25 :text music-author :yalign 0 :lines 1 :xalign 0.5)
+    )
+    (box :orientation "v" :space-evenly true :class "music-media"
+;      (box :orientation "h" :space-evenly true :class "position"
+;        (scale :marks "position" :draw-value true :value-pos "left" :min 0 :max music-length :value music-position :orientation "h" :onclick "")
+;      )
+      (box :orientation "h" :space-evenly false :spacing 10
+        (button :onclick "playerctl previous" :class "music-button" "<<--")
+        (button :onclick "playerctl position 10-" :class "music-button music-position" "<-")
+        (button :onclick "playerctl play-pause" :class "music-button music-play" music-status)
+        (button :onclick "playerctl position 10+" :class "music-button music-position" "->")
+        (button :onclick "playerctl next" :class "music-button" "-->>")
+      )
+    )
   )
 )
 
 ; ----------------------------- VARIABLES ----------------------------- 
 ;
-(deflisten music :initial "whatever" 
-  "playerctl --follow metadata --format '{{artist}} -> \"{{title}}\"'"
+(deflisten music :initial "None" 
+  "playerctl --follow metadata --format '\"{{title}}\"'"
+)
+(deflisten music-author :initial "None"
+  "playerctl --follow metadata --format '{{artist}}'"
+)
+(deflisten music-length :initial "1"
+  "playerctl metadata --format '{{mpris:length}}' | awk '{print $1/1000000}'"
+)
+(deflisten music-position :initial "0"
+  "playerctl --follow position"
 )

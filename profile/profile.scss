@@ -13,9 +13,13 @@ $min-width-trough: 200px;
   min-width: 50px;
 }
 
-.music-title,
-.music-author {
+.music {
   font-size: 13px;
+}
+
+.author {
+  font-size: 10px;
+  color: gray;
 }
 
 .profile-module trough {
@@ -40,10 +44,6 @@ $min-width-trough: 200px;
   font-size: 30;
 }
 
-.music {
-  min-height: 350px;
-}
-
 .avatar {
   border-radius: 100%;
   border: 2px solid $avatar-border-color;
@@ -55,4 +55,16 @@ $min-width-trough: 200px;
 
 .ram progress {
   background-color: greenyellow;
+}
+
+.music-button {
+  background-color: rgba(64, 64, 64, 0.8);
+  min-width: 50px;
+  min-height: 30px;
+  border-radius: 15px;
+}
+
+.position highlight {
+  background-color: white;
+  border-radius: 20px;
 }
