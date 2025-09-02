@@ -63,6 +63,28 @@ $min-width-trough: 200px;
   border-radius: 15px;
 }
 
+.volume {
+  background-color: $module-color;
+  padding: 15px;
+  color: $module-text-color;
+  font-family: $text-font-family;
+  border-radius: 30px;
+}
+
+.volume scale trough {
+  background-color: #4e4e4e;
+  border-radius: 50px;
+  min-height: 500px;
+  min-width: 10px;
+}
+
+.volume scale trough highlight {
+  all: unset;
+  background-color: #D35D6E;
+  color: #000000;
+  border-radius: 10px;
+}
+
 .position highlight {
   background-color: white;
   border-radius: 20px;

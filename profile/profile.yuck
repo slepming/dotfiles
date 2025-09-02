@@ -15,7 +15,7 @@
 ; ----------------------------- WIDGETS ----------------------------- 
 
 (defwidget profile-modules []
-  (box :space-evenly false :halign "center" :spacing 10 :valign "center"
+  (box :space-evenly false :halign "center" :spacing 10 :valign "center" :orientation "h"
     (box :class "profile-modules" :orientation "v" :space-evenly false :spacing 10 :halign "center" :valign "center"
         (profile-image :name "slepming" :url "${EWW_CONFIG_DIR}/assets/profile-image")
         (profile-module
@@ -30,6 +30,7 @@
       (music-widget)
       (system-tray :valign "center" :halign "center")
     )
+    (volume-scale)
 ))
 
 (defwidget profile-image[name url] 
@@ -45,6 +46,12 @@
       (box "SysTray")
       (systray :spacing 15 :orientation "h" :space-evenly false :icon-size 25 :class "systray")
     )
+)
+
+(defwidget volume-scale []
+  (box :orientation "v" :halign "center" :valign "center" :class "volume" :space-evenly false :spacing 20
+    (scale :min 0 :max 101 :onchange "pamixer --set-volume {}" :orientation "v" :flipped true :value volume)
+  )
 )
 
 (defwidget metric [label value class]
@@ -89,4 +96,8 @@
 )
 (deflisten music-position :initial "0"
   "playerctl --follow position"
+)
+
+(deflisten volume :initial "0"
+  "pamixer --get-volume"
 )
