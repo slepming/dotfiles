@@ -24,20 +24,8 @@
     (workspaces)))
 
 (defwidget workspaces []
-  (box :class "workspaces"
-    :orientation "h"
-    :halign "start"
-    :valign "center"
-    :spacing 10
-    (button :onclick "hyprctl dispatch workspace 1" 1)
-    (button :onclick "hyprctl dispatch workspace 2" 2)
-    (button :onclick "hyprctl dispatch workspace 3" 3)
-    (button :onclick "hyprctl dispatch workspace 4" 4)
-    (button :onclick "hyprctl dispatch workspace 5" 5)
-    (button :onclick "hyprctl dispatch workspace 6" 6)
-    (button :onclick "hyprctl dispatch workspace 7" 7)
-    (button :onclick "hyprctl dispatch workspace 8" 8)
-    (button :onclick "hyprctl dispatch workspace 9" 9)))
+  (literal :content workspaces :valign "center")
+)
 
 (defwidget center []
   (box :orientation "horizontal" :halign "center" :class "module" 
@@ -60,3 +48,5 @@
   "playerctl --follow status")
 
 (defvar cava-visible true)
+
+(defpoll workspaces :interval "1s" :initial "none" "./scripts/rust/workspaces/target/release/workspaces")
