@@ -98,6 +98,6 @@
   "playerctl --follow position"
 )
 
-(deflisten volume :initial "0"
+(defpoll volume :initial "0" :interval "200ms"
   "pamixer --get-volume"
 )
