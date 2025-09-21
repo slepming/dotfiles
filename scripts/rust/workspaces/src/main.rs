@@ -1,4 +1,4 @@
-use std::process::Command;
+use std::{ops::Range, process::Command};
 
 use serde::{Deserialize, Serialize};
 
@@ -31,18 +31,26 @@ fn main() {
 
     parsed.sort();
 
-    let mut buttons: String = "".to_string();
+    let active: Vec<i32> = parsed.iter().map(|w| w.id).collect();
+    let workspaces = 1..active.last().unwrap() + 2;
 
-    for i in parsed {
-        buttons += format!(
-            "(button :onclick \"hyprctl dispatch workspace {}\" \"{}\") ",
-            i.id, i.id
-        )
-        .as_ref();
-    }
+    let buttons: Vec<String> = workspaces
+        .map(|n| {
+            let class = if active.contains(&n) {
+                "active"
+            } else {
+                "inactive"
+            };
+
+            format!(
+                "(button :onclick \"hyprctl dispatch workspace\" :class \"{}\" {})",
+                class, n
+            )
+        })
+        .collect();
 
     println!(
         "(box :class \"workspaces\" :orientation \"h\" :halign \"start\" :valign \"center\" :spacing 10 {})",
-        buttons
+        buttons.join(" ")
     )
 }
