@@ -33,14 +33,20 @@
       (label :limit-width 90 :text {music-status == "Playing" && cava-visible ? cava : time}))))
 
 (defwidget right []
-  (box :orientation "horizontal" :halign "center" :class "module" 
-    (systray :orentation "h" :spacing 10 :prepend-new true)))
+  (box :orientation "h" :space-evenly false :halign "center" :spacing 25
+    (box :orientation "horizontal" :halign "center" :class "module" 
+        (systray :orentation "h" :spacing 10 :prepend-new true))
+    (box :orientation "h" :halign "center" :class "module"
+      (label :class "time" :text small-time)))
+)
 
 ; -----------------------------  VARIABLES ----------------------------- 
 (defvar separator "🡘")
 
 (defpoll time :interval "1s" :initial "initial-value"
   "date")
+(defpoll small-time :interval "1s" :intial "0"
+  "date \"+%H:%M:%S\"")
 
 (deflisten cava :initial "" `playerctl --follow metadata --format '{{artist}} -> "{{title}}"'`)
 
