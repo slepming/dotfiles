@@ -2,13 +2,13 @@
 @import "profile/profile.scss";
 
 .topbar {
-  background-color: transparent;
+  background-color: $topbar-color;
 }
 
 .module {
-  background-color: $module-color;
   color: $module-text-color;
   padding: 0 10px 0 10px;
+  background-color: $module-color;
   border-radius: 30px;
 }
 
