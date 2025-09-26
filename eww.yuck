@@ -28,16 +28,17 @@
 )
 
 (defwidget center []
-  (box :orientation "horizontal" :halign "center" :class "module" 
-    (button :onclick "${EWW_CMD} update -c ${EWW_CONFIG_DIR} cava-visible=${!cava-visible}" 
-      (label :limit-width 90 :text {music-status == "Playing" && cava-visible ? cava : time}))))
+  (box :orientation "horizontal" :halign "center" 
+  ;  (button :onclick "${EWW_CMD} update -c ${EWW_CONFIG_DIR} cava-visible=${!cava-visible}" 
+  ;    (label :limit-width 90 :text {music-status == "Playing" && cava-visible ? cava : time})))
+))
 
 (defwidget right []
   (box :orientation "h" :space-evenly false :halign "center" :spacing 25
     (box :orientation "horizontal" :halign "center" :class "module" 
         (systray :orentation "h" :spacing 10 :prepend-new true))
     (box :orientation "h" :halign "center" :class "module"
-      (label :class "time" :text small-time)))
+      (label :class "time" :text time)))
 )
 
 ; -----------------------------  VARIABLES ----------------------------- 
@@ -55,4 +56,4 @@
 
 (defvar cava-visible true)
 
-(defpoll workspaces :interval "1s" :initial "none" "./scripts/rust/workspaces/target/release/workspaces")
+(defpoll workspaces :interval "200ms" :initial "none" "./scripts/rust/workspaces/target/release/workspaces") ; Creates cpu load.
