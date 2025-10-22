@@ -26,6 +26,7 @@ Variants {
                 }
 
                 ClockWidget {}
+                Tray {}
             }
         }
     }
