@@ -6,5 +6,5 @@
     select-bg:          #b4befeff;
     select-fg:          #11111bff;
     separatorcolor:     transparent;
-    border-color:       transparent;
+    border-color:       #212121;
 }

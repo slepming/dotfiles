@@ -2,7 +2,7 @@ configuration {
   modes: "drun";
   show-icons: true;
   drun-display-format:         "{name}";
-  font:   "FiraCodeNerdFont 20";
+  font:   "FiraCodeNerdFont 15";
 }
 
 @theme "~/.config/rofi/theme.rasi"
@@ -19,6 +19,8 @@ filebrowser {
 
 window {
   enabled:true;
+  width: 400;
+  height: 680;
   fullscreen: false;
   transparency: "real";
   cursor: "default";
@@ -26,7 +28,7 @@ window {
   padding:0em;
   border: 2px;
   border-radius: 0em;
-  border-color: #ADC6FF;
+  border-color: @border-color;
   background-color: #00000030;
 }
 
@@ -47,7 +49,7 @@ listview {
   dynamic:false;
   fixed-height: false;
   fixed-columns: false;
-  reverse:true;
+  reverse:false;
   cursor: "default";
   background-color: transparent;
   text-color: @main-fg;
@@ -62,11 +64,10 @@ inputbar{
 entry {
   background-color: transparent;
   text-color: white;
-  placeholder: "App";
+  placeholder: "App name";
   placeholder-color: @main-fg;
   horizontal-align: 0.5;
 }
-
 
 // Elements //
 element {
@@ -89,11 +90,12 @@ element-icon {
   background-color: transparent;
   text-color: inherit;
   expand: false;
+  margin:0.1em;
 }
 
 element-text {
   vertical-align: 0.5;
-  horizontal-align: 0.5;
+  horizontal-align: 1;
   cursor: inherit;
   background-color: transparent;
   text-color: white;
