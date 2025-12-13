@@ -29,9 +29,11 @@ Item {
         color.r: 255
         color.g: 255
         color.b: 255
-        font.family: "FiraCodeNerdFont"
-        font.bold: true
-        font.pointSize: 13
+        font {
+            family: "FiraCodeNerdFont"
+            bold: true
+            pointSize: 13
+        }
         z: 1
 
         text: {
@@ -42,29 +44,4 @@ Item {
             precision: SystemClock.Seconds
         }
     }
-
-    transitions: [
-        Transition {
-            from: ""
-            to: "visible"
-
-            NumberAnimation {
-                target: time
-                property: "width"
-                duration: 100
-                easing.bezierCurve: 0.755, 0.05, 0.855, 0.06
-            }
-        },
-        Transition {
-            from: "visible"
-            to: ""
-
-            NumberAnimation {
-                target: time
-                property: "width"
-                duration: 200
-                easing.bezierCurve: 0.755, 0.05, 0.855, 0.06
-            }
-        }
-    ]
 }

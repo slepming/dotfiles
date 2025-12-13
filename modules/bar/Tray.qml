@@ -1,9 +1,11 @@
 import "../../config"
+import "Components/"
+import Quickshell
 import Quickshell.Services.SystemTray
 import Quickshell.Widgets
 import QtQuick
 
-Item {
+Rectangle {
     anchors.leftMargin: 4
     anchors.topMargin: 25
     anchors.top: parent.top
@@ -12,16 +14,19 @@ Item {
 
     Column {
         spacing: 15
-        IconImage {
-            source: `${Paths.config}/arch.png`
-            implicitSize: 25
+        add: Transition {
+            NumberAnimation {
+                properties: "scale"
+                from: 0
+                to: 1
+                duration: 200
+            }
         }
         Repeater {
-            model: SystemTray.items.values
-            delegate: IconImage {
-                source: modelData.icon
-                implicitSize: 25
-            }
+            id: items
+
+            model: SystemTray.items
+            delegate: TrayItem {}
         }
     }
 }
