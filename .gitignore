@@ -1,0 +1,15 @@
+*
+
+!.gitignore
+
+!.config/
+
+!.config/rofi/
+!.config/kitty/
+!.config/hypr/
+!.config/quickshell/
+
+!.config/rofi/**
+!.config/kitty/**
+!.config/hypr/**
+!.config/quickshell/**
