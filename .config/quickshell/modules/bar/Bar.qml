@@ -1,8 +1,7 @@
 import Quickshell
 import Quickshell.Wayland
-import Quickshell.Hyprland
+import "./Components"
 import QtQuick
-import QtQuick.Layouts
 
 Variants {
     model: Quickshell.screens
@@ -10,7 +9,7 @@ Variants {
         Item {
             id: root
             required property var modelData
-            width: 35
+            width: 40
             PanelWindow {
                 id: bar
                 screen: root.modelData
@@ -28,7 +27,14 @@ Variants {
                 }
 
                 ClockWidget {}
-                Tray {}
+                Tray {
+                    anchors.leftMargin: 4
+                    anchors.topMargin: 25
+                    anchors.top: parent.top
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                }
+                Battery {}
             }
         }
     }

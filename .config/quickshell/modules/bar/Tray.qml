@@ -1,17 +1,8 @@
-import "../../config"
 import "Components/"
-import Quickshell
 import Quickshell.Services.SystemTray
-import Quickshell.Widgets
 import QtQuick
 
 Rectangle {
-    anchors.leftMargin: 4
-    anchors.topMargin: 25
-    anchors.top: parent.top
-    anchors.left: parent.left
-    anchors.right: parent.right
-
     Column {
         spacing: 15
         add: Transition {
