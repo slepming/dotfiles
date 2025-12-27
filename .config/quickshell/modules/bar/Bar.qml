@@ -1,5 +1,6 @@
 import Quickshell
 import Quickshell.Wayland
+import Quickshell.Services.UPower
 import "./Components"
 import QtQuick
 
@@ -27,6 +28,7 @@ Variants {
                 }
 
                 ClockWidget {}
+
                 Tray {
                     anchors.leftMargin: 4
                     anchors.topMargin: 25
@@ -34,7 +36,10 @@ Variants {
                     anchors.left: parent.left
                     anchors.right: parent.right
                 }
-                Battery {}
+
+                Battery {
+                    visible: UPower.devices.values.length == 1
+                }
             }
         }
     }
