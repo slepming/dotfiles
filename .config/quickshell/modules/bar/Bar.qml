@@ -1,6 +1,5 @@
 import Quickshell
 import Quickshell.Wayland
-import Quickshell.Services.UPower
 import "./Components"
 import "../../config/"
 import QtQuick
