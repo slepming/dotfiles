@@ -2,15 +2,18 @@ import Quickshell
 import Quickshell.Wayland
 import Quickshell.Services.UPower
 import "./Components"
+import "../../config/"
 import QtQuick
 
 Variants {
     model: Quickshell.screens
     delegate: Component {
+
         Item {
             id: root
             required property var modelData
             width: 40
+
             PanelWindow {
                 id: bar
                 screen: root.modelData
@@ -38,7 +41,7 @@ Variants {
                 }
 
                 Battery {
-                    visible: UPower.devices.values.length == 1
+                    visible: Configuration.battery
                 }
             }
         }
