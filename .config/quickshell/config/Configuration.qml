@@ -20,18 +20,15 @@ Singleton {
         onLoaded: {
             try {
                 JSON.parse(text());
-                if (adapter.utilities.toasts.configLoaded)
-                    Toaster.toast(qsTr("Config loaded"), qsTr("Config loaded in %1ms").arg(timer.elapsedMs()), "rule_settings");
             } catch (e) {
-                Toaster.toast(qsTr("Failed to load config"), e.message, "settings_alert", Toast.Error);
+                console.error("failed to save config")
             }
         }
         onLoadFailed: err => {
             if (err !== FileViewError.FileNotFound)
-                Toaster.toast(qsTr("Failed to read config file"), FileViewError.toString(err), "settings_alert", Toast.Warning);
+                console.error("failed to save config")
         }
-        onSaveFailed: err => Toaster.toast(qsTr("Failed to save config"), FileViewError.toString(err), "settings_alert", Toast.Error)
-
+        onSaveFailed: err => console.error("failed to save config")
         JsonAdapter {
             id: adapter
 
