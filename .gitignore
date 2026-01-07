@@ -13,3 +13,7 @@
 !.config/kitty/**
 !.config/hypr/**
 !.config/quickshell/**
+
+.config/hypr/hyprpaper.conf
+.config/quickshell/config.json
+
