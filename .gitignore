@@ -8,11 +8,13 @@
 !.config/kitty/
 !.config/hypr/
 !.config/quickshell/
+!.config/alacritty
 
 !.config/rofi/**
 !.config/kitty/**
 !.config/hypr/**
 !.config/quickshell/**
+!.config/alacritty/**
 
 .config/hypr/hyprpaper.conf
 .config/quickshell/config.json
