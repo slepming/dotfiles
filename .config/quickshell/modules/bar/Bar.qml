@@ -34,7 +34,7 @@ Variants {
                     color.r: 0
                     color.b: 0
                     color.g: 0
-                    color.a: 0.5
+                    color.a: 0.3
                     radius: 20
                     implicitWidth: parent.implicitWidth
                     anchors.fill: parent
