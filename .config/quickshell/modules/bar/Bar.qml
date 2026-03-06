@@ -18,11 +18,11 @@ Variants {
                 id: bar
                 screen: root.modelData
                 WlrLayershell.namespace: "widget"
-                color.r: 0
-                color.b: 0
-                color.g: 0
-                color.a: 0.2
                 implicitWidth: root.width
+                color.a: 0
+                margins {
+                    left: 1
+                }
 
                 anchors {
                     top: true
@@ -30,18 +30,28 @@ Variants {
                     bottom: true
                 }
 
-                ClockWidget {}
+                Rectangle {
+                    color.r: 0
+                    color.b: 0
+                    color.g: 0
+                    color.a: 0.5
+                    radius: 20
+                    implicitWidth: parent.implicitWidth
+                    anchors.fill: parent
 
-                Tray {
-                    anchors.leftMargin: 4
-                    anchors.topMargin: 25
-                    anchors.top: parent.top
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                }
+                    Tray {
+                        anchors.leftMargin: 6.5
+                        anchors.topMargin: 25
+                        anchors.top: parent.top
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                    }
 
-                Battery {
-                    visible: Configuration.battery
+                    ClockWidget {}
+
+                    Battery {
+                        visible: Configuration.battery
+                    }
                 }
             }
         }
