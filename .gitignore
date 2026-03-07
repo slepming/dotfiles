@@ -5,6 +5,7 @@
 !.config/
 
 !.config/rofi/
+!.config/niri/
 !.config/kitty/
 !.config/hypr/
 !.config/quickshell/
@@ -14,6 +15,7 @@
 !.config/kitty/**
 !.config/hypr/**
 !.config/quickshell/**
+!.config/niri/**
 !.config/alacritty/**
 
 .config/hypr/hyprpaper.conf

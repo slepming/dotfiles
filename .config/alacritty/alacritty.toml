@@ -2,7 +2,7 @@
 opacity = 0.9
 padding.x = 10
 padding.y = 10
-decorations = "Full"
+decorations = "None"
 
 [font]
 normal.family = "0xProtoNerdFontMono"
