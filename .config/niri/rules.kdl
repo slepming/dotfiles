@@ -1,0 +1,54 @@
+workspace "access"
+workspace "social"
+workspace "term"
+workspace "games"
+workspace "untitled"
+workspace "programming"
+
+// WINDOW RULES
+
+window-rule {
+	match app-id="waterfox"
+	open-on-workspace "social"
+	block-out-from "screen-capture"
+}
+
+window-rule {
+	match app-id="discord"
+	open-on-workspace "untitled"
+	block-out-from "screen-capture"
+}
+
+window-rule {
+	match app-id="org.telegram.desktop"
+	open-on-workspace "social"
+	block-out-from "screen-capture"
+}
+
+window-rule {
+	match app-id="Throne"
+	open-on-workspace "access"
+	block-out-from "screen-capture"
+}
+
+window-rule {
+    geometry-corner-radius 2
+    clip-to-geometry true
+}
+
+// Open the Waterfox picture-in-picture player as floating by default.
+window-rule {
+    // This app-id regular expression will work for both:
+    // - host Waterfox (app-id is "waterfox")
+    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
+    match app-id=r#"net.waterfox.waterfox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+// LAYER RULES
+
+layer-rule {
+	match namespace="widget"
+	match at-startup=true
+	block-out-from "screen-capture"
+}
