@@ -1,3 +1,4 @@
+import "../../config"
 import Quickshell
 import QtQuick
 
@@ -37,7 +38,11 @@ Item {
         z: 1
 
         text: {
-            Qt.formatDateTime(clock.date, "hh:\nmm:\nss");
+            if (!Configuration.horizontal) {
+                Qt.formatDateTime(clock.date, "hh:\nmm:\nss");
+            } else {
+                Qt.formatDateTime(clock.date, "hh:mm:ss");
+            }
         }
 
         SystemClock {

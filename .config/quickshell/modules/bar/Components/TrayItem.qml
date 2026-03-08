@@ -15,7 +15,7 @@ Rectangle {
     IconImage {
         id: image
         source: root.modelData.icon
-        implicitSize: 25
+        implicitSize: 30
         asynchronous: true
     }
 }

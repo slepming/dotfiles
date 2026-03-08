@@ -8,26 +8,28 @@ import QtQuick
 Variants {
     model: Quickshell.screens
     delegate: Component {
-
         Item {
             id: root
             required property var modelData
-            width: 40
+            width: Configuration.horizontal ? modelData.width * 0.992 : modelData.width * 0.03
 
             PanelWindow {
                 id: bar
                 screen: root.modelData
                 WlrLayershell.namespace: "widget"
                 implicitWidth: root.width
+                implicitHeight: Configuration.horizontal ? 50 : root.height
                 color.a: 0
+                property bool horizontal: Configuration.horizontal
                 margins {
-                    left: 1
+                    left: !horizontal
+                    top: horizontal
                 }
 
                 anchors {
                     top: true
-                    left: true
-                    bottom: true
+                    left: !horizontal
+                    bottom: !horizontal
                 }
 
                 Rectangle {
@@ -40,8 +42,9 @@ Variants {
                     anchors.fill: parent
 
                     Tray {
-                        anchors.leftMargin: 6.5
-                        anchors.topMargin: 25
+                        anchors.leftMargin: Configuration.horizontal ? 25 : 6.5
+                        anchors.topMargin: Configuration.horizontal ? parent.height / 2 - 30 / 2 : 25
+
                         anchors.top: parent.top
                         anchors.left: parent.left
                         anchors.right: parent.right

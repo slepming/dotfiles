@@ -4,5 +4,4 @@ import Quickshell
 
 ShellRoot {
     Bar {}
-    Media {}
 }

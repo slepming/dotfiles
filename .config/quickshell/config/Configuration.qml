@@ -7,6 +7,7 @@ Singleton {
     id: root
 
     property alias battery: adapter.battery
+    property alias horizontal: adapter.horizontal
 
     FileView {
         id: configFile
@@ -21,18 +22,19 @@ Singleton {
             try {
                 JSON.parse(text());
             } catch (e) {
-                console.error("failed to save config")
+                console.error("failed to save config");
             }
         }
         onLoadFailed: err => {
             if (err !== FileViewError.FileNotFound)
-                console.error("failed to save config")
+                console.error("failed to save config");
         }
         onSaveFailed: err => console.error("failed to save config")
         JsonAdapter {
             id: adapter
 
             property bool battery: false
+            property bool horizontal: false
         }
     }
 }
