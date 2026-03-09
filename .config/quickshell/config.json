@@ -1,3 +1,4 @@
 {
-  "battery": false
+  "battery": false,
+  "horizontal": true
 }
