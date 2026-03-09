@@ -1,5 +1,7 @@
 binds {
     Mod+Space hotkey-overlay-title="Open application runner" { spawn-sh "rofi -show drun"; }
+    // vicinae added for test. But vicinae is RAM pacman and I don't want use it on my 16 GB RAM pc
+    //Mod+Space hotkey-overlay-title="Open application runner" { spawn-sh "vicinae toggle"; }
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
     // in the end. To find an XKB name for a particular key, you may use a program
     // like wev.
