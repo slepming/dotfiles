@@ -42,12 +42,12 @@ Variants {
                     anchors.fill: parent
 
                     Tray {
-                        anchors.leftMargin: Configuration.horizontal ? 25 : 6.5
-                        anchors.topMargin: Configuration.horizontal ? parent.height / 2 - 30 / 2 : 25
+			anchors {
+			    horizontalCenter: Configuration.horizontal ? undefined : parent.horizontalCenter
+			    topMargin: Configuration.horizontal ? parent.height / 2 - 30 / 2 : 25
 
-                        anchors.top: parent.top
-                        anchors.left: parent.left
-                        anchors.right: parent.right
+			    top: parent.top
+			}
                     }
 
                     ClockWidget {}
