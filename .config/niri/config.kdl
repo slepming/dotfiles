@@ -1,6 +1,6 @@
 include "rules.kdl"
 include "binds.kdl"
-include "mouse.kdl"
+include "miscellaneous.kdl"
 include "input.kdl"
 include "animations.kdl"
 include "output.kdl"
