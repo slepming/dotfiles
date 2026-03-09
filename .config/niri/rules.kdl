@@ -59,3 +59,13 @@ layer-rule {
 	match at-startup=true
 	block-out-from "screen-capture"
 }
+
+layer-rule {
+	match namespace="rofi"
+	match at-startup=true
+	block-out-from "screen-capture"
+  background-effect {
+    blur true
+    xray false
+  }
+}
