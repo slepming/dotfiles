@@ -1,3 +1,11 @@
 cursor {
 	hide-when-typing
 }
+
+blur {
+    // off
+    passes 5
+    offset 1
+    noise 0.02
+    saturation 1
+}
