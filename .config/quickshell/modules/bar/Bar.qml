@@ -42,12 +42,14 @@ Variants {
                     anchors.fill: parent
 
                     Tray {
-			anchors {
-			    horizontalCenter: Configuration.horizontal ? undefined : parent.horizontalCenter
-			    topMargin: Configuration.horizontal ? parent.height / 2 - 30 / 2 : 25
+                        // Why Tray can't use anchor for set on vertical or horizontal center
+                        anchors {
+                            //horizontalCenter: Configuration.horizontal ? undefined : parent.horizontalCenter
+                            //verticalCenter: Configuration.horizontal ? parent.verticalCenter : undefined
+                            topMargin: Configuration.horizontal ? parent.height / 2 - 30 / 2 : 25
 
-			    top: parent.top
-			}
+                            top: parent.top
+                        }
                     }
 
                     ClockWidget {}
