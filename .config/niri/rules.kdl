@@ -45,6 +45,15 @@ window-rule {
 }
 
 window-rule {
+    match app-id="viewer"
+    open-floating true
+    background-effect { 
+	blur true 
+	xray false
+    }
+}
+
+window-rule {
     geometry-corner-radius 2
     clip-to-geometry true
 }

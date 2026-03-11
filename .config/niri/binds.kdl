@@ -259,6 +259,10 @@ binds {
     Mod+Shift+S { screenshot-screen; }
     Mod+Ctrl+S { screenshot-window; }
 
+    // Actions for open media programs with keybinds. However screenshot action don't returns path to file 
+    // I need to create another command for parse image path
+    Mod+P { spawn-sh "vulkan_zero \"$(find $HOME/Pictures/Screenshots/ -type f -printf '%p\n' | sort -r | head -n 1)\""; }
+    Mod+A { spawn-sh "vulkan_zero \"$(find $HOME/Pictures/Screenshots/ -type f -printf '%p\n' | sort -r | head -n 1)\""; }
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
     // so they may, for example, forward the key presses as-is to a remote machine.
