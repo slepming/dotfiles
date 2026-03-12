@@ -1,0 +1,20 @@
+bar:
+  height: 30
+  location: bottom
+  background: 00000077
+
+  font: 0xProtoNerdFont:pixelsize=16:weight=bold
+
+  center:
+    - clock:
+        time-format: "%H:%M"
+        content:
+          - string:
+              text: "{time}"
+              foreground: ffffffff
+              margin: 6
+
+  right:
+    - niri-language:
+        content:
+          string: {text: "{language}"}
