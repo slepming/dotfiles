@@ -9,7 +9,8 @@
 !.config/kitty/
 !.config/hypr/
 !.config/quickshell/
-!.config/alacritty
+!.config/alacritty/
+!.config/yambar/
 
 !.config/rofi/**
 !.config/kitty/**
@@ -17,6 +18,7 @@
 !.config/quickshell/**
 !.config/niri/**
 !.config/alacritty/**
+!.config/yambar/**
 
 .config/hypr/hyprpaper.conf
 .config/quickshell/config.json
