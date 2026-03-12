@@ -14,7 +14,7 @@ layout {
 
         // Color of the ring on the active monitor.
         //active-color "#7fc8ff"
-        active-gradient from="#3a3a3a22" to="#aaaaaa" angle=45 relative-to="workspace-view" in="oklch longer hue"
+        active-gradient from="#3a3a3a00" to="#aaaaaa" angle=45 relative-to="workspace-view" in="oklch longer hue"
 
         // Color of the ring on inactive monitors.
         //
