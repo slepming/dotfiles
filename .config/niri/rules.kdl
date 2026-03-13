@@ -14,6 +14,12 @@ window-rule {
 }
 
 window-rule {
+	match app-id="firefox"
+	open-on-workspace "social"
+	block-out-from "screen-capture"
+}
+
+window-rule {
 	match app-id="discord"
 	open-on-workspace "untitled"
 	block-out-from "screen-capture"
