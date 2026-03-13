@@ -1,6 +1,6 @@
 bar:
   height: 30
-  location: bottom
+  location: top
   background: 00000077
 
   font: 0xProtoNerdFont:pixelsize=16:weight=bold
@@ -11,10 +11,25 @@ bar:
         content:
           - string:
               text: "{time}"
-              foreground: ffffffff
+              foreground: ddddddff
               margin: 6
 
   right:
     - niri-language:
         content:
-          string: {text: "{language}"}
+          - string: 
+              text: "{language}"
+              margin: 10
+              foreground: ddddddff
+  
+  left:
+    - cpu:
+        poll-interval: 1000
+        content:
+          map:
+            conditions:
+              id < 0:
+                - string: 
+                    text: "{cpu}%"
+                    margin: 10
+                    foreground: ddddddff
