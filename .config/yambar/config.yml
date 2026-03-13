@@ -15,11 +15,16 @@ bar:
               margin: 6
 
   right:
+    - battery:
+        name: BATT
+        poll-interval: 30000
+        content:
+          string: {text: "BAT: {capacity}% {estimate}"}
     - niri-language:
         content:
           - string: 
               text: "{language}"
-              margin: 10
+              margin: 30
               foreground: ddddddff
   
   left:
