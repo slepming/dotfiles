@@ -53,11 +53,6 @@ window-rule {
     }
 }
 
-window-rule {
-    geometry-corner-radius 2
-    clip-to-geometry true
-}
-
 // Open the Waterfox picture-in-picture player as floating by default.
 window-rule {
     // This app-id regular expression will work for both:
@@ -66,6 +61,25 @@ window-rule {
     match app-id=r#"net.waterfox.waterfox$"# title="^Picture-in-Picture$"
     open-floating true
 }
+
+// Global rules
+
+window-rule {
+    match is-window-cast-target=true
+
+
+    focus-ring {
+        width 4
+
+        active-gradient from="#3a3a3a00" to="#ff0000" angle=45 relative-to="workspace-view" in="oklch longer hue"
+    }
+}
+
+window-rule {
+    geometry-corner-radius 2
+    clip-to-geometry true
+}
+
 
 // LAYER RULES
 
@@ -79,8 +93,8 @@ layer-rule {
 	match namespace="rofi"
 	match at-startup=true
 	block-out-from "screen-capture"
-  background-effect {
-    blur true
-    xray false
-  }
+	background-effect {
+	  blur true
+	  xray false
+	}
 }
