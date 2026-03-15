@@ -33,3 +33,13 @@ bar:
                     text: "{cpu}%"
                     margin: 10
                     foreground: ddddddff
+    - foreign-toplevel:
+        content:
+          map:
+            conditions:
+              ~activated: {empty: {}}
+              activated:
+                - string: 
+                    text: "{app-id}"
+                    margin: 10
+                    foreground: ddddddff
