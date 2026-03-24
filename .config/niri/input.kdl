@@ -35,7 +35,7 @@ input {
         scroll-factor horizontal=2.0 vertical=0.5
         // accel-profile "flat"
         // scroll-method "two-finger"
-        // disabled-on-external-mouse
+        disabled-on-external-mouse
     }
 
     mouse {
