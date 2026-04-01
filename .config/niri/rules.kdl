@@ -38,6 +38,12 @@ window-rule {
 }
 
 window-rule {
+	match app-id="chromium"
+	open-on-workspace "social"
+	block-out-from "screen-capture"
+}
+
+window-rule {
   match app-id="Alacritty"
   background-effect {
     blur true
