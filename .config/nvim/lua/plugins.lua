@@ -1,8 +1,13 @@
 vim.pack.add({
 	{ src = "https://github.com/mason-org/mason.nvim" },
+	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" }
 })
 
 require("mason").setup({})
+
+require("mason-lspconfig").setup {
+    automatic_enable = true
+}
 
 vim.pack.add({
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
@@ -106,4 +111,9 @@ require('blink.cmp').setup({
 	},
 
 	sources = { default = { "lsp" } }
+})
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(ev)
+    local bufnr = ev.buf
+  end,
 })
