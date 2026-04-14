@@ -13,7 +13,11 @@ keymap.set("n", "<leader>fo", ":lua vim.lsp.buf.format()<CR>", opts)
 keymap.set("n", "<leader>sa", ":lua vim.lsp.buf.code_action()<CR>")
 
 keymap.set("n", "sj", function()
-	vim.diagnostic.goto_next()
+	vim.diagnostic.jump({ count = 1,severity = vim.diagnostic.severity.ERROR })
+end, opts)
+
+keymap.set("n", "<leader>j", function ()
+	vim.diagnostic.setloclist()
 end, opts)
 
 keymap.set("n", "<leader>e", "<Cmd>Explore<CR>, opts")
