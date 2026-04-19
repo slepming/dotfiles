@@ -12,14 +12,13 @@ window-rule {
 
 
     focus-ring {
-        width 4
+        width 3
 
         active-gradient from="#3a3a3a00" to="#ff0000" angle=45 relative-to="workspace-view" in="oklch longer hue"
     }
 }
 
 window-rule {
-    geometry-corner-radius 2
     clip-to-geometry true
 	open-maximized true
 }
