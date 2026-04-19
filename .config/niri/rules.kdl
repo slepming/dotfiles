@@ -26,15 +26,17 @@ window-rule {
 // WINDOW RULES
 
 window-rule {
-	match app-id="waterfox"
+	match app-id="waterfox|firefox|chromium"
 	open-on-workspace "social"
 	block-out-from "screen-capture"
-}
+    popups {
+        // Matches the default libadwaita pop-up corner radius.
+        geometry-corner-radius 9
 
-window-rule {
-	match app-id="firefox"
-	open-on-workspace "social"
-	block-out-from "screen-capture"
+        background-effect {
+            blur true
+        }
+    }
 }
 
 window-rule {
@@ -56,12 +58,6 @@ window-rule {
 }
 
 window-rule {
-	match app-id="chromium"
-	open-on-workspace "social"
-	block-out-from "screen-capture"
-}
-
-window-rule {
 	match app-id="Alacritty"
 	open-maximized false
 	background-effect {
@@ -73,6 +69,7 @@ window-rule {
     match app-id="viewer"
 	open-maximized false
     open-floating true
+    baba-is-float true
     background-effect { 
 		blur true 
 		xray false
