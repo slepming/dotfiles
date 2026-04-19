@@ -5,6 +5,25 @@ workspace "games"
 workspace "untitled"
 workspace "programming"
 
+// Global rules
+
+window-rule {
+    match is-window-cast-target=true
+
+
+    focus-ring {
+        width 4
+
+        active-gradient from="#3a3a3a00" to="#ff0000" angle=45 relative-to="workspace-view" in="oklch longer hue"
+    }
+}
+
+window-rule {
+    geometry-corner-radius 2
+    clip-to-geometry true
+	open-maximized true
+}
+
 // WINDOW RULES
 
 window-rule {
@@ -44,18 +63,20 @@ window-rule {
 }
 
 window-rule {
-  match app-id="Alacritty"
-  background-effect {
-    blur true
-  }
+	match app-id="Alacritty"
+	open-maximized false
+	background-effect {
+		blur true
+	}
 }
 
 window-rule {
     match app-id="viewer"
+	open-maximized false
     open-floating true
     background-effect { 
-	blur true 
-	xray false
+		blur true 
+		xray false
     }
 }
 
@@ -66,26 +87,8 @@ window-rule {
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"net.waterfox.waterfox$"# title="^Picture-in-Picture$"
     open-floating true
+	open-maximized false
 }
-
-// Global rules
-
-window-rule {
-    match is-window-cast-target=true
-
-
-    focus-ring {
-        width 4
-
-        active-gradient from="#3a3a3a00" to="#ff0000" angle=45 relative-to="workspace-view" in="oklch longer hue"
-    }
-}
-
-window-rule {
-    geometry-corner-radius 2
-    clip-to-geometry true
-}
-
 
 // LAYER RULES
 
