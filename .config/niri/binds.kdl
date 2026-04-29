@@ -203,6 +203,7 @@ binds {
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
     Mod+F { maximize-column; }
+    Alt+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
     // Alternative bind for right hand
     Alt+Shift+F { fullscreen-window; }
