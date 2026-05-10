@@ -1,8 +1,10 @@
 -- THEMES
 vim.pack.add({
-	{ src = "https://github.com/scottmckendry/cyberdream.nvim" }
+	{ src = "https://github.com/scottmckendry/cyberdream.nvim" },
+	{ src = "https://github.com/rebelot/kanagawa.nvim" }
 })
 
+-- MASON
 vim.pack.add({
 	{ src = "https://github.com/mason-org/mason.nvim" },
 	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" }
@@ -14,9 +16,163 @@ require("mason-lspconfig").setup {
     automatic_enable = true
 }
 
+-- CUSTOMIZATIONS
+
 vim.pack.add({
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
-	{ src = "https://github.com/NStefan002/screenkey.nvim" }
+	{ src = "https://github.com/NStefan002/screenkey.nvim" },
+	{ src = "https://github.com/y3owk1n/undo-glow.nvim" },
+	{ src = "https://github.com/ya2s/nvim-cursorline" },
+	{ src = "https://github.com/chentoast/marks.nvim" },
+})
+
+require('marks').setup( {
+  -- whether to map keybinds or not. default true
+  default_mappings = true,
+  -- which builtin marks to show. default {}
+  builtin_marks = { ".", "<", ">", "^" },
+  -- whether movements cycle back to the beginning/end of buffer. default true
+  cyclic = true,
+  -- whether the shada file is updated after modifying uppercase marks. default false
+  force_write_shada = false,
+  -- how often (in ms) to redraw signs/recompute mark positions. 
+  -- higher values will have better performance but may cause visual lag, 
+  -- while lower values may cause performance penalties. default 150.
+  refresh_interval = 250,
+  -- sign priorities for each type of mark - builtin marks, uppercase marks, lowercase
+  -- marks, and bookmarks.
+  -- can be either a table with all/none of the keys, or a single number, in which case
+  -- the priority applies to all marks.
+  -- default 10.
+  sign_priority = { lower=10, upper=15, builtin=8, bookmark=20 },
+  -- disables mark tracking for specific filetypes. default {}
+  excluded_filetypes = {},
+  -- disables mark tracking for specific buftypes. default {}
+  excluded_buftypes = {},
+  -- marks.nvim allows you to configure up to 10 bookmark groups, each with its own
+  -- sign/virttext. Bookmarks can be used to group together positions and quickly move
+  -- across multiple buffers. default sign is '!@#$%^&*()' (from 0 to 9), and
+  -- default virt_text is "".
+  bookmark_0 = {
+    sign = "⚑",
+    virt_text = "hello world",
+    -- explicitly prompt for a virtual line annotation when setting a bookmark from this group.
+    -- defaults to false.
+    annotate = false,
+  },
+  mappings = {}
+})
+
+require('nvim-cursorline').setup {
+  disable_filetypes = {},
+  disable_buftypes = {},
+  cursorline = {
+    enable = true,
+    timeout = 300,
+    number = false,
+  },
+  cursorword = {
+    enable = true,
+    min_length = 3,
+    hl = { underline = true },
+  }
+}
+
+require("undo-glow").setup({
+  animation = {
+    enabled = true,
+    duration = 300,
+  },
+  highlights = {
+    undo = { hl_color = { bg = "#693232" } },    -- Dark muted red
+    redo = { hl_color = { bg = "#2F4640" } },    -- Dark muted green
+    yank = { hl_color = { bg = "#7A683A" } },    -- Dark muted yellow
+    paste = { hl_color = { bg = "#325B5B" } },   -- Dark muted cyan
+    search = { hl_color = { bg = "#5C475C" } },  -- Dark muted purple
+    comment = { hl_color = { bg = "#7A5A3D" } }, -- Dark muted orange
+    cursor = { hl_color = { bg = "#333333" } },  -- Dark muted gray
+  },
+  priority = 2048 * 3,
+})
+
+local map = vim.keymap.set
+
+map("n", "u", function() require("undo-glow").undo() end, { desc = "Undo with highlight", noremap = true })
+map("n", "U", function() require("undo-glow").redo() end, { desc = "Redo with highlight", noremap = true })
+map("n", "p", function() require("undo-glow").paste_below() end, { desc = "Paste below with highlight", noremap = true })
+map("n", "P", function() require("undo-glow").paste_above() end, { desc = "Paste above with highlight", noremap = true })
+
+map("n", "n", function()
+  require("undo-glow").search_next({ animation = { animation_type = "strobe" } })
+end, { desc = "Search next with highlight", noremap = true })
+
+map("n", "N", function()
+  require("undo-glow").search_prev({ animation = { animation_type = "strobe" } })
+end, { desc = "Search prev with highlight", noremap = true })
+
+map("n", "*", function()
+  require("undo-glow").search_star({ animation = { animation_type = "strobe" } })
+end, { desc = "Search star with highlight", noremap = true })
+
+map("n", "#", function()
+  require("undo-glow").search_hash({ animation = { animation_type = "strobe" } })
+end, { desc = "Search hash with highlight", noremap = true })
+
+map({ "n", "x" }, "gc", function()
+  local pos = vim.fn.getpos(".")
+  vim.schedule(function() vim.fn.setpos(".", pos) end)
+  return require("undo-glow").comment()
+end, { desc = "Toggle comment with highlight", expr = true, noremap = true })
+
+map("o", "gc", function() require("undo-glow").comment_textobject() end, { desc = "Comment textobject with highlight", noremap = true })
+map("n", "gcc", function() return require("undo-glow").comment_line() end, { desc = "Toggle comment line with highlight", expr = true, noremap = true })
+
+local autocmd = vim.api.nvim_create_autocmd
+
+autocmd("TextYankPost", {
+  desc = "Highlight when yanking (copying) text",
+  callback = function()
+    require("undo-glow").yank()
+  end,
+})
+
+autocmd("CursorMoved", {
+  desc = "Highlight when cursor moved significantly",
+  callback = function()
+    require("undo-glow").cursor_moved({
+      animation = { animation_type = "slide" },
+    })
+  end,
+})
+
+autocmd("FocusGained", {
+  desc = "Highlight when focus gained",
+  callback = function()
+    ---@type UndoGlow.CommandOpts 
+    local opts = {
+      animation = { animation_type = "slide" },
+    }
+
+    opts = require("undo-glow.utils").merge_command_opts("UgCursor", opts)
+    local pos = require("undo-glow.utils").get_current_cursor_row()
+
+    require("undo-glow").highlight_region(vim.tbl_extend("force", opts, {
+      s_row = pos.s_row,
+      s_col = pos.s_col,
+      e_row = pos.e_row,
+      e_col = pos.e_col,
+      force_edge = opts.force_edge == nil and true or opts.force_edge,
+    }))
+  end,
+})
+
+autocmd("CmdlineLeave", {
+  desc = "Highlight when search cmdline leave",
+  callback = function()
+    require("undo-glow").search_cmd({
+      animation = { animation_type = "fade" },
+    })
+  end,
 })
 
 require("screenkey").setup({
