@@ -5,9 +5,9 @@ padding.y = 10
 decorations = "None"
 
 [font]
-normal.family = "0xProtoNerdFontMono"
-bold.family = "0xProtoNerdFontMono"
-italic.family = "0xProtoNerdFont"
-bold_italic.family = "0xProtoNerdFontMono"
-size = 15.0
+normal.family = "BigBlueTerm437NerdFontMono"
+bold.family = "BigBlueTerm437NerdFontMono"
+italic.family = "BigBlueTerm437NerdFontMono"
+bold_italic.family = "BigBlueTerm437NerdFontMono"
+size = 10.0
 
