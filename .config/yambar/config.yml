@@ -3,7 +3,7 @@ bar:
   location: top
   background: 00000077
 
-  font: 0xProtoNerdFont:pixelsize=16:weight=bold
+  font: HurmitNerdFontMono:pixelsize=12:weight=bold
 
   center:
     - clock:
