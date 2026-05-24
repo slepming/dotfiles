@@ -27,6 +27,7 @@ window-rule {
 
 window-rule {
 	match app-id="waterfox|firefox|chromium"
+	draw-border-with-background false
 	open-on-workspace "social"
 	block-out-from "screen-capture"
     popups {
@@ -47,6 +48,7 @@ window-rule {
 
 window-rule {
 	match app-id="org.telegram.desktop"
+	draw-border-with-background false
 	open-on-workspace "social"
 	block-out-from "screen-capture"
 }
