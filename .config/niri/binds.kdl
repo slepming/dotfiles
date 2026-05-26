@@ -200,13 +200,13 @@ binds {
     Mod+R { switch-preset-column-width; }
     // Cycling through the presets in reverse order is also possible.
     // Mod+R { switch-preset-column-width-back; }
-    Mod+Shift+R { switch-preset-window-height; }
-    Mod+Ctrl+R { reset-window-height; }
-    Mod+F { maximize-column; }
-    Alt+F { maximize-column; }
-    Mod+Shift+F { fullscreen-window; }
+    Mod+Shift+R        { switch-preset-window-height; }
+    Mod+Ctrl+R         { reset-window-height; }
+    Mod+F repeat=false { maximize-column; }
+    Alt+F repeat=false { maximize-column; }
+    Mod+Shift+F        { fullscreen-window; }
     // Alternative bind for right hand
-    Alt+Shift+F { fullscreen-window; }
+    Alt+Shift+F        { fullscreen-window; }
 
     // While maximize-column leaves gaps and borders around the window,
     // maximize-window-to-edges doesn't: the window expands to the edges of the screen.
