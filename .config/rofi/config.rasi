@@ -5,7 +5,7 @@ configuration {
   display-run: "";
   display-window: "";
   drun-display-format: "{name}";
-  font: "TerminessNerdFont 12";
+  font: "TerminessNerdFont bold 12";
 }
 
 @theme "~/.config/rofi/theme.rasi"
@@ -39,7 +39,7 @@ prompt {
   text-color: @fg-alt;
   background-color: transparent;
   vertical-align: 0.5;
-  font: "BigBlueTerm437NerdFontMono  14";
+  font: "BigBlueTerm437NerdFontMono Bold 14";
 }
 
 entry {
@@ -107,3 +107,4 @@ textbox {
     text-color: @fg;
     vertical-align: 0.5;
 }
+
