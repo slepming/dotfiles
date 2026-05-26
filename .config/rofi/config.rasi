@@ -5,7 +5,7 @@ configuration {
   display-run: "";
   display-window: "";
   drun-display-format: "{name}";
-  font: "BigBlueTerm437NerdFontMono 12";
+  font: "TerminessNerdFont 12";
 }
 
 @theme "~/.config/rofi/theme.rasi"
