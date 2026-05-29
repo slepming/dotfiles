@@ -68,6 +68,22 @@ window-rule {
 }
 
 window-rule {
+	match app-id="Alacritty-float"
+	open-maximized false
+    open-floating true
+	background-effect {
+		blur true
+	}
+}
+
+window-rule {
+	match app-id="dev.zed.Zed"
+	background-effect {
+		blur true
+	}
+}
+
+window-rule {
     match app-id="viewer"
 	open-maximized false
     open-floating true

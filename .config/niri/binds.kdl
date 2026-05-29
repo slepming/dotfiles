@@ -18,8 +18,9 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+Q hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
-    Alt+Q hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
+    Mod+Return hotkey-overlay-title="Open a Terminal(float): alacritty" { spawn-sh "alacritty --class=Alacritty-float"; }
+    Mod+Q hotkey-overlay-title="Open a Terminal: alacritty"             { spawn "alacritty"; }
+    Alt+Q hotkey-overlay-title="Open a Terminal: alacritty"             { spawn "alacritty"; }
     Super+Ctrl+Shift+L hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "hyprlock"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
