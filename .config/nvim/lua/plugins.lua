@@ -1,7 +1,7 @@
 -- THEMES
 vim.pack.add({
 	{ src = "https://github.com/scottmckendry/cyberdream.nvim" },
-	{ src = "https://github.com/rebelot/kanagawa.nvim" }
+	{ src = "https://github.com/rebelot/kanagawa.nvim" },
 })
 
 -- MASON
@@ -24,6 +24,8 @@ vim.pack.add({
 	{ src = "https://github.com/y3owk1n/undo-glow.nvim" },
 	{ src = "https://github.com/ya2s/nvim-cursorline" },
 	{ src = "https://github.com/chentoast/marks.nvim" },
+	{ src = "https://github.com/mcauley-penney/visual-whitespace.nvim" },
+	{ src = "https://github.com/sitiom/nvim-numbertoggle" },
 })
 
 require('marks').setup( {
