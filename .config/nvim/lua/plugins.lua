@@ -4,6 +4,18 @@ vim.pack.add({
 	{ src = "https://github.com/rebelot/kanagawa.nvim" },
 })
 
+require('kanagawa').setup({
+	transparent = true,
+    overrides = function(colors)
+        return {
+            LineNr = { bg = "NONE" },
+            CursorLineNr = { bg = "NONE" },
+            SignColumn = { bg = "NONE" },
+            FoldColumn = { bg = "NONE" },
+        }
+    end,
+})
+
 -- MASON
 vim.pack.add({
 	{ src = "https://github.com/mason-org/mason.nvim" },
