@@ -38,6 +38,32 @@ vim.pack.add({
 	{ src = "https://github.com/chentoast/marks.nvim" },
 	{ src = "https://github.com/mcauley-penney/visual-whitespace.nvim" },
 	{ src = "https://github.com/sitiom/nvim-numbertoggle" },
+	{ src = "https://github.com/r4ppz/lspeek.nvim" },
+})
+
+require("lspeek").setup( {
+	window = {
+		  width = 70,
+		  height = 15,
+		  border = "single",
+		},
+
+		-- Limits the number of stack preview windows.
+		stack_limit = 5,
+
+		-- LSP can return multiple definitions (e.g., overloaded functions).
+		-- false = open vim.ui.select to pick one (default).
+		-- true  = skip the picker and jump to the first result.
+		select_first = false,
+
+		-- Preview window is read-only.
+		-- To edit the file, open it in a split or a new buffer.
+		keymaps = {
+		  close = "q",
+		  split = "s",
+		  vsplit = "v",
+		  enter = "<CR>",
+		},
 })
 
 require('marks').setup( {
