@@ -29,9 +29,56 @@ require("mason-lspconfig").setup {
     automatic_enable = true
 }
 
--- CUSTOMIZATIONS
-
+-- ZIG
 vim.pack.add({
+  'https://codeberg.org/ziglang/zig.vim',
+})
+
+-- don't show parse errors in a separate window
+vim.g.zig_fmt_parse_errors = 0
+-- disable format-on-save from `ziglang/zig.vim`
+vim.g.zig_fmt_autosave = 0
+-- enable  format-on-save from vim.lsp + ZLS
+--
+-- Formatting with ZLS matches `zig fmt`.
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = { "*.zig", "*.zon" },
+  callback = function(ev)
+    vim.lsp.buf.format()
+  end
+})
+
+vim.lsp.config['zls'] = {
+  -- Set to 'zls' if `zls` is in your PATH
+  cmd = { 'zls' },
+  filetypes = { 'zig' },
+  root_markers = { 'build.zig' },
+  -- There are two ways to set config options:
+  --   - edit your `zls.json` that applies to any editor that uses ZLS
+  --   - set in-editor config options with the `settings` field below.
+  --
+  -- Further information on how to configure ZLS:
+  -- https://zigtools.org/zls/configure/
+  settings = {
+    zls = {
+      -- Whether to enable build-on-save diagnostics
+      --
+      -- Further information about build-on save:
+      -- https://zigtools.org/zls/guides/build-on-save/
+      -- enable_build_on_save = true,
+
+      -- omit the following line if `zig` is in your PATH
+      -- zig_exe_path = '/path/to/zig_executable'
+    }
+  },
+}
+vim.lsp.enable('zls')
+
+-- ZIG END
+
+-- CUSTOMIZATIONS
+vim.pack.add({
+	{ src = "https://github.com/stevearc/aerial.nvim" },
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/NStefan002/screenkey.nvim" },
 	{ src = "https://github.com/y3owk1n/undo-glow.nvim" },
@@ -42,7 +89,9 @@ vim.pack.add({
 	{ src = "https://github.com/r4ppz/lspeek.nvim" },
 })
 
-require("lspeek").setup( {
+require("aerial").setup()
+
+require("lspeek").setup({
 	window = {
 		  width = 70,
 		  height = 15,
@@ -64,6 +113,7 @@ require("lspeek").setup( {
 		  split = "s",
 		  vsplit = "v",
 		  enter = "<CR>",
+		  tab = "t",
 		},
 })
 
@@ -296,7 +346,36 @@ require("screenkey").setup({
     },
 })
 
-require('lualine').setup()
+require('lualine').setup({
+  sections = {
+    lualine_x = { "aerial" },
+
+    -- Or you can customize it
+    lualine_y = {
+      {
+        "aerial",
+        -- The separator to be used to separate symbols in status line.
+        sep = " ) ",
+
+        -- The number of symbols to render top-down. In order to render only 'N' last
+        -- symbols, negative numbers may be supplied. For instance, 'depth = -1' can
+        -- be used in order to render only current symbol.
+        depth = nil,
+
+        -- When 'dense' mode is on, icons are not rendered near their symbols. Only
+        -- a single icon that represents the kind of current symbol is rendered at
+        -- the beginning of status line.
+        dense = false,
+
+        -- The separator to be used to separate symbols in dense mode.
+        dense_sep = ".",
+
+        -- Color the symbol icons.
+        colored = true,
+      },
+    },
+  },
+})
 
 vim.pack.add({
 	{ src = "https://github.com/seblyng/roslyn.nvim" },
