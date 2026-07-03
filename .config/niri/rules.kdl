@@ -60,7 +60,7 @@ window-rule {
 }
 
 window-rule {
-	match app-id="Alacritty"
+	match app-id="Alacritty|com.mitchellh.ghostty"
 	open-maximized false
 	background-effect {
 		blur true
