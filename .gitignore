@@ -8,7 +8,8 @@
 !.config/niri/
 !.config/kitty/
 !.config/hypr/
-!.config/quickshell/
+!.config/ghostty/
+#!.config/quickshell/
 !.config/alacritty/
 !.config/yambar/
 !.config/nvim/
@@ -16,8 +17,9 @@
 !.config/rofi/**
 !.config/kitty/**
 !.config/hypr/**
-!.config/quickshell/**
+#!.config/quickshell/**
 !.config/niri/**
+!.config/ghostty/**
 !.config/alacritty/**
 !.config/yambar/**
 !.config/nvim/**
