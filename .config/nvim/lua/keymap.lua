@@ -24,7 +24,7 @@ keymap.set("n", "<leader>i", function ()
 	vim.lsp.buf.implementation()
 end, opts)
 
-keymap.set("n", "<leader>e", "<Cmd>Explore<CR>, opts")
+keymap.set("n", "<leader>e", "<Cmd>Explore<CR>", opts)
 keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 keymap.set("n", "gd", function ()
 	require("lspeek").peek_definition()
@@ -35,3 +35,13 @@ keymap.set("n", "<leader>/", "<Cmd>FzfLua live_grep<CR>", opts)
 keymap.set("n", "<leader>ci", vim.lsp.buf.incoming_calls, opts)
 
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+
+keymap.set("n", "<leader>f", function()
+    local filename = vim.fn.expand("%:t")
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    local line = vim.api.nvim_get_current_line()
+    if col < #line then
+        col = col + 1
+    end
+    vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { filename })
+end, opts)
