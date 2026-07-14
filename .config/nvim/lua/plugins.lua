@@ -18,7 +18,8 @@ vim.pack.add({
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
     { src = "https://github.com/ibhagwan/fzf-lua" },
     { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("^1") },
-    { src = "https://github.com/akinsho/toggleterm.nvim" }
+    { src = "https://github.com/akinsho/toggleterm.nvim" },
+	{ src = "https://github.com/lewis6991/gitsigns.nvim" }
 })
 
 require('kanagawa').setup({
