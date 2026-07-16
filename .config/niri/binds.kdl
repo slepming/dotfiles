@@ -204,7 +204,7 @@ binds {
     Mod+Shift+R        { switch-preset-window-height; }
     Mod+Ctrl+R         { reset-window-height; }
     Mod+F repeat=false { maximize-column; }
-    Alt+F repeat=false { maximize-column; }
+    //Alt+F repeat=false { maximize-column; } disabled for bash shortcuts compatibility 
     Mod+Shift+F        { fullscreen-window; }
     // Alternative bind for right hand
     Alt+Shift+F        { fullscreen-window; }
