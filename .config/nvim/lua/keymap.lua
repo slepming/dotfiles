@@ -1,81 +1,67 @@
 local keymap = vim.keymap
-local opts = { noremap = true, silent = true }
 
--- TABS
+local function opts(extra)
+	return vim.tbl_extend("force", { noremap = true, silent = true }, extra or {})
+end
 
+-- Tabs
 keymap.set("n", "te", ":tabedit ")
-keymap.set("n", "<tab>", ":tabnext<Return>", opts)
-keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
-keymap.set("n", "<leader>a", ":AerialToggle<Return>", opts)
+keymap.set("n", "<tab>", ":tabnext<Return>", opts())
+keymap.set("n", "<s-tab>", ":tabprev<Return>", opts())
 
-keymap.set("n", "<leader>fo", ":lua vim.lsp.buf.format()<CR>", opts)
+-- Navigation / UI
+keymap.set("n", "<leader>a", ":AerialToggle<Return>", opts({ desc = "Aerial outline" }))
+keymap.set("n", "<leader>e", "<Cmd>Explore<CR>", opts({ desc = "File explorer" }))
+keymap.set("n", "<leader><leader>", "<Cmd>lua FzfLua.files()<CR>", opts({ desc = "Find files" }))
+keymap.set("n", "<leader>/", "<Cmd>FzfLua live_grep<CR>", opts({ desc = "Live grep" }))
 
-keymap.set("n", "<leader>sa", ":lua vim.lsp.buf.code_action()<CR>")
+-- Git (LazyGitToggle is defined in plugins.lua)
+keymap.set("n", "<leader>g", function()
+	if type(_G.LazyGitToggle) == "function" then
+		_G.LazyGitToggle()
+	else
+		vim.notify("LazyGit is not available yet", vim.log.levels.WARN)
+	end
+end, opts({ desc = "LazyGit" }))
+
+-- LSP
+keymap.set("n", "<leader>fo", function()
+	vim.lsp.buf.format()
+end, opts({ desc = "Format buffer" }))
+keymap.set("n", "<leader>sa", function()
+	vim.lsp.buf.code_action()
+end, opts({ desc = "Code action" }))
+keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts({ desc = "Code action" }))
+keymap.set("n", "<leader>ci", vim.lsp.buf.incoming_calls, opts({ desc = "Incoming calls" }))
+keymap.set("n", "<leader>i", function()
+	vim.lsp.buf.implementation()
+end, opts({ desc = "Go to implementation" }))
 
 keymap.set("n", "sj", function()
-    vim.diagnostic.jump({ count = 1,severity = vim.diagnostic.severity.ERROR })
-end, opts)
+	vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR })
+end, opts({ desc = "Next error" }))
 
-keymap.set("n", "<leader>j", function ()
-    vim.diagnostic.setloclist()
-end, opts)
+keymap.set("n", "<leader>j", function()
+	vim.diagnostic.setloclist()
+end, opts({ desc = "Diagnostics loclist" }))
 
-keymap.set("n", "<leader>i", function ()
-    vim.lsp.buf.implementation()
-end, opts)
+keymap.set("n", "gD", function()
+	vim.lsp.buf.declaration()
+end, opts({ desc = "Go to declaration" }))
+keymap.set("n", "gd", function()
+	require("lspeek").peek_definition()
+end, opts({ desc = "Peek definition" }))
+keymap.set("n", "gr", function()
+	vim.lsp.buf.references()
+end, opts({ desc = "References" }))
 
-keymap.set("n", "<leader>e", "<Cmd>Explore<CR>", opts)
-keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-keymap.set("n", "gd", function ()
-    require("lspeek").peek_definition()
-end, opts)
-keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-keymap.set("n", "<leader><leader>", "<Cmd>lua FzfLua.files()<CR>", opts)
-keymap.set("n", "<leader>/", "<Cmd>FzfLua live_grep<CR>", opts)
-keymap.set("n", "<leader>ci", vim.lsp.buf.incoming_calls, opts)
-
-vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-
+-- Insert current filename at cursor
 keymap.set("n", "<leader>f", function()
-    local filename = vim.fn.expand("%:t")
-    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-    local line = vim.api.nvim_get_current_line()
-    if col < #line then
-        col = col + 1
-    end
-    vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { filename })
-end, opts)
-
--- undo-glow mappings
-keymap.set("n", "u", function() require("undo-glow").undo() end, opts)
-keymap.set("n", "U", function() require("undo-glow").redo() end, opts)
-keymap.set("n", "p", function() require("undo-glow").paste_below() end, opts)
-keymap.set("n", "P", function() require("undo-glow").paste_above() end, opts)
-
-keymap.set("n", "n", function()
-    require("undo-glow").search_next({ animation = { animation_type = "strobe" } })
-end, opts)
-
-keymap.set("n", "N", function()
-    require("undo-glow").search_prev({ animation = { animation_type = "strobe" } })
-end, opts)
-
-keymap.set("n", "*", function()
-    require("undo-glow").search_star({ animation = { animation_type = "strobe" } })
-end, opts)
-
-keymap.set("n", "#", function()
-    require("undo-glow").search_hash({ animation = { animation_type = "strobe" } })
-end, opts)
-
-keymap.set({ "n", "x" }, "gc", function()
-    local pos = vim.fn.getpos(".")
-    vim.schedule(function() vim.fn.setpos(".", pos) end)
-    return require("undo-glow").comment()
-end, { expr = true, noremap = true })
-
-keymap.set("o", "gc", function() require("undo-glow").comment_textobject() end, opts)
-keymap.set("n", "gcc", function() return require("undo-glow").comment_line() end, { expr = true, noremap = true })
-
--- Toggleterm / Lazygit
-keymap.set("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", opts)
+	local filename = vim.fn.expand("%:t")
+	local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+	local line = vim.api.nvim_get_current_line()
+	if col < #line then
+		col = col + 1
+	end
+	vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { filename })
+end, opts({ desc = "Insert filename" }))
