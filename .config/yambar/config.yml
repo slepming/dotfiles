@@ -23,6 +23,17 @@ bar:
               foreground: ddddddff
   
   left:
+    - mem:
+        poll-interval: 2500
+        content:
+          string: 
+            margin: 10
+            text: "MEM: {percent_used}%"
+    - label:
+        content:
+          string:
+            text: "|"
+            margin: 10
     - cpu:
         poll-interval: 1000
         content:
@@ -30,9 +41,14 @@ bar:
             conditions:
               id < 0:
                 - string: 
-                    text: "{cpu}%"
+                    text: "CPU: {cpu}%"
                     margin: 10
                     foreground: ddddddff
+    - label:
+        content:
+          string:
+            text: "|"
+            margin: 10
     - foreign-toplevel:
         content:
           map:
@@ -40,6 +56,6 @@ bar:
               ~activated: {empty: {}}
               activated:
                 - string: 
-                    text: "{app-id}"
+                    text: "APP: {app-id}"
                     margin: 10
                     foreground: ddddddff
