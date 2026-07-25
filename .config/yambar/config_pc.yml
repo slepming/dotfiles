@@ -1,0 +1,61 @@
+bar:
+  height: 30
+  location: top
+  background: 00000077
+
+  font: HurmitNerdFontMono:pixelsize=12:weight=bold
+
+  center:
+    - clock:
+        time-format: "%H:%M"
+        content:
+          - string:
+              text: "{time}"
+              foreground: ddddddff
+              margin: 6
+
+  right:
+    - niri-language:
+        content:
+          - string: 
+              text: "{language}"
+              margin: 30
+              foreground: ddddddff
+  
+  left:
+    - mem:
+        poll-interval: 2500
+        content:
+          string: 
+            margin: 10
+            text: "MEM: {percent_used}%"
+    - label:
+        content:
+          string:
+            text: "|"
+            margin: 10
+    - cpu:
+        poll-interval: 1000
+        content:
+          map:
+            conditions:
+              id < 0:
+                - string: 
+                    text: "CPU: {cpu}%"
+                    margin: 10
+                    foreground: ddddddff
+    - label:
+        content:
+          string:
+            text: "|"
+            margin: 10
+    - foreign-toplevel:
+        content:
+          map:
+            conditions:
+              ~activated: {empty: {}}
+              activated:
+                - string: 
+                    text: "APP: {app-id}"
+                    margin: 10
+                    foreground: ddddddff

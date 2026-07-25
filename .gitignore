@@ -27,3 +27,4 @@
 .config/hypr/hyprpaper.conf
 .config/quickshell/config.json
 .config/nvim/nvim-pack-lock.json
+.config/yambar/config.yml
