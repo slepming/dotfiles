@@ -33,11 +33,24 @@ bar:
                 string:
                   margin: 10
                   text: "BAT: {capacity}%"
-    - label:
+    - script:
+        path: ${HOME}/.config/yambar/scripts/cpu_temp_check_zig
+        poll-interval: 3000
         content:
-          string:
-            text: "|"
-            margin: 10
+          map:
+            conditions:
+              temp >= 70:
+                string:
+                  margin: 10
+                  text: "TEA: {temp}°C"
+                  deco:
+                    background: 
+                      color: ffff0000
+
+              temp < 70:
+                string:
+                  margin: 10
+                  text: "TEA: {temp}°C"
     - niri-language:
         content:
           - string: 
