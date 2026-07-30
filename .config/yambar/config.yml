@@ -3,7 +3,7 @@ bar:
   location: top
   background: 00000077
 
-  font: HurmitNerdFontMono:pixelsize=18:weight=bold
+  font: HurmitNerdFontMono:pixelsize=15:weight=bold
 
   center:
     - clock:
@@ -16,24 +16,52 @@ bar:
 
   right:
     - battery:
-        name: BATT
+        name: ${BATTERY}
         poll-interval: 30000
         content:
-          string: {text: "BAT: {capacity}%    "}
+          map:
+            conditions:
+              state == "unknown": {empty: {}}
+              capacity < 30:
+                string:
+                  margin: 10
+                  text: "BAT: {capacity}%"
+                  deco:
+                    background:
+                      color: ff0000ff
+              capacity > 30:
+                string:
+                  margin: 10
+                  text: "BAT: {capacity}%"
+    - label:
+        content:
+          string:
+            text: "|"
+            margin: 10
     - niri-language:
         content:
           - string: 
               text: "{language}"
-              margin: 30
+              margin: 10
               foreground: ddddddff
   
   left:
     - mem:
         poll-interval: 2500
         content:
-          string: 
-            margin: 10
-            text: "MEM: {percent_used}%"
+          map:
+            conditions:
+              percent_used >= 80:
+                string: 
+                  margin: 10
+                  text: "MEM: {percent_used}%"
+                  deco:
+                    background:
+                      color: ff0000ff
+              percent_used < 80:
+                string: 
+                  margin: 10
+                  text: "MEM: {percent_used}%"
     - label:
         content:
           string:
