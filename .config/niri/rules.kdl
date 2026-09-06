@@ -47,6 +47,12 @@ window-rule {
 }
 
 window-rule {
+	match app-id=r#"obsidian"#
+	open-on-workspace "untitled"
+	block-out-from "screen-capture"
+}
+
+window-rule {
 	match app-id="org.telegram.desktop"
 	draw-border-with-background false
 	open-on-workspace "social"
